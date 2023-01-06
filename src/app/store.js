@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoReducer from "../features/todoSlice";
+import habitReducer from "../features/habitSlice";
 
 export const store = configureStore({
 	reducer: {
-		todo: todoReducer,
+		habit: habitReducer,
 	},
 });
