@@ -15,17 +15,6 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 		dispatch(updateStatus(data));
 	};
 
-	const deleteBtnContainer = {
-		height: "60px",
-		background: "hsl(0deg 100% 50%)",
-		width: "30px",
-		borderRadius: "0 10px 10px 0",
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		margin: "0 0 0 7px",
-	};
-
 	return (
 		<div className="list-of-habits">
 			<div className="habit-details">
@@ -72,7 +61,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 					</tbody>
 				</table>
 			</div>
-			<div onClick={() => dispatch(deleteHabit(habitId))} style={deleteBtnContainer}>
+			<div onClick={() => dispatch(deleteHabit(habitId))} className="delete-btn">
 				<i className="fa-solid fa-trash"></i>
 			</div>
 		</div>

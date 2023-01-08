@@ -77,12 +77,6 @@ function HabitContainer() {
 		return h.habit.habits;
 	});
 
-	const btnStyle = {
-		backgroundColor: "#F10086",
-		color: "white",
-		fontSize: "1rem",
-	};
-
 	return (
 		<div className="main-container">
 			<div className="habits-bar-container">
@@ -99,9 +93,7 @@ function HabitContainer() {
 						</span>
 						<input onChange={(e) => setDescription(e.target.value)} value={description} type="text" placeholder="Write the discription of the habit...." />
 					</div>
-					<button onClick={addYourHabitOnClick} style={btnStyle}>
-						Add Habit
-					</button>
+					<button onClick={addYourHabitOnClick}>Add Habit</button>
 				</section>
 				{data.map((habit, index) => {
 					return <Habits habitName={habit.title} habitDiscription={habit.description} habitStatus={habit.dates} habitId={habit.id} key={index} />;

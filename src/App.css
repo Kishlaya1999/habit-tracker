@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary: #000000;
+  --secondary: hsl(278, 88%, 20%);
+  --habit-shadow: hsl(278, 88%, 80%);
+  --add-btn: #700B97;
+  --delete-btn: #C02739;
+  /* --primary: #00005C;
+  --secondary: #3B185F;
+  --habit-shadow: #F0CAA3;
+  --add-btn: #C060A1; */
+}
+
 .navbar {
   height: 10vh;
   background-color: hsl(0, 0%, 50%);
@@ -16,11 +28,11 @@
 
 .main-container {
   width: 1000px;
-  background-color: #180A0A;
+  background-color: var(--primary);
   position: relative;
   inset: 0;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 30px;
   border-radius: 10px;
   padding: 15px;
 }
@@ -76,16 +88,19 @@
   width: 90px;
   height: 30px;
   cursor: pointer;
+  background-color: var(--add-btn);
+  color: white;
+  font-size: 1rem;
 }
 
 .list-of-habits {
-  background-color: #711A75;
+  background-color: var(--secondary);
   color: white;
   border-radius: 10px;
   width: 98%;
   margin: 10px;
   padding: 10px;
-  box-shadow: 0 0 7px hsl(297, 64%, 70%);
+  box-shadow: 0 0 7px var(--habit-shadow);
   display: flex;
   align-items: center;
 }
@@ -134,5 +149,19 @@ td {
 }
 
 .seven-days-of-week {
+  display: flex;
+  align-items: center;
+  height: 90px;
   align-self: flex-end;
+}
+
+.delete-btn {
+  height: 60px;
+  background: var(--delete-btn);
+  width: 30px;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 7px;
 }
