@@ -2,12 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { store } from "./app/store";
 import { Provider } from "react-redux";
+// importing the store
+import { store } from "./app/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
+		{/* Providing the redux store to the entire app */}
 		<Provider store={store}>
 			<App />
 		</Provider>
