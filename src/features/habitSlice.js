@@ -109,8 +109,6 @@ export const habitSlice = createSlice({
 	},
 });
 
-console.log(habitSlice);
-
 // exporting the reducers [functions]
 export const { addHabit, deleteHabit, updateStatus } = habitSlice.actions;
 
