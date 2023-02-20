@@ -97,12 +97,14 @@
   background-color: var(--secondary);
   color: white;
   border-radius: 10px;
-  width: 98%;
+/*   width: 98%; */
   margin: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   box-shadow: 0 0 7px var(--habit-shadow);
   display: flex;
   align-items: center;
+  position: relative;
+  flex-direction:column;
 }
 
 .habit-name {
@@ -115,9 +117,9 @@
   font-size: 0.8rem;
 }
 
-.habit-details {
+/* .habit-details {
   width: 200px;
-}
+} */
 
 
 .seven-days-of-week table {
@@ -168,12 +170,15 @@ td {
 }
 
 .delete-btn {
-  height: 60px;
+  height: 35px;
   background: var(--delete-btn);
-  width: 30px;
-  border-radius: 0 10px 10px 0;
+  width: 35px;
+  border-radius: 0 10px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 0 0 7px;
+  position:absolute;
+  top:0;
+  right:0;
 }
