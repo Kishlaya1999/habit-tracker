@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 // importing the useDispatch hook so that the reducer can be dispatched with data to change the state
 import { useDispatch } from "react-redux";
 // importing the deleteHabit and updateStatus reducers [function] from habitSlice
@@ -14,6 +14,27 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 	// using useDispatch hoot for dispatching data form the UI to redux store so that state can be updated accordingly
 	// data which is begin send is known as payload and redux store can access the data
 	const dispatch = useDispatch();
+
+	const tableHeadRow = useRef();
+	const tableStatusRow = useRef();
+
+	useEffect(() => {
+		// Code for highlighting the current date and its status
+		const dates = document.getElementsByClassName("dates");
+		const today = new Date();
+		const todayDate = today.getDate();
+		const dateArray = Object.values(dates).map((date) => date.textContent);
+		// console.log(dateArray);
+		const onlyDateArray = dateArray.map((date) => Number(date.slice(0, 2)));
+		// console.log(onlyDateArray.indexOf(todayDate));
+		tableHeadRow.current.children[onlyDateArray.indexOf(todayDate)].style.background =
+			"purple";
+		tableStatusRow.current.children[onlyDateArray.indexOf(todayDate)].style.background =
+			"purple";
+
+		// const dateArray = dates.map((date) => date.textContent);
+		// console.log(dateArray);
+	}, []);
 
 	// This function is executed when any of the dates status has to be changed i.e none,done,fail
 	const updateCompleteStatus = (e) => {
@@ -57,24 +78,23 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 			<div className="seven-days-of-week">
 				<table>
 					<thead>
-						<tr>
+						<tr ref={tableHeadRow}>
 							{/* displaying the dates of the Last 7 day */}
-							<th style={{ background: "purple" }}>{habitStatus[0].date}</th>
-							<th>{habitStatus[1].date}</th>
-							<th>{habitStatus[2].date}</th>
-							<th>{habitStatus[3].date}</th>
-							<th>{habitStatus[4].date}</th>
-							<th>{habitStatus[5].date}</th>
-							<th>{habitStatus[6].date}</th>
+							<th className="dates">{habitStatus[0].date}</th>
+							<th className="dates">{habitStatus[1].date}</th>
+							<th className="dates">{habitStatus[2].date}</th>
+							<th className="dates">{habitStatus[3].date}</th>
+							<th className="dates">{habitStatus[4].date}</th>
+							<th className="dates">{habitStatus[5].date}</th>
+							<th className="dates">{habitStatus[6].date}</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr ref={tableStatusRow}>
 							{/* Displaying the habit status of the last 7 day */}
 							<td
 								onClick={updateCompleteStatus}
-								data-date={habitStatus[0].date}
-								style={{ background: "purple" }}>
+								data-date={habitStatus[0].date}>
 								{/* displaying the none, done or fail icon accoring to the state */}
 								{habitStatus[0].status === "none" ? (
 									<i className="fa-solid fa-check"></i>
