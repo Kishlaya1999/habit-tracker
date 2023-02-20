@@ -122,14 +122,24 @@
 
 .seven-days-of-week table {
   border-collapse: collapse;
+  width: 100%;
+  /* overflow-x: scroll; */
 }
 
 .seven-days-of-week th,
 td {
   height: 30px;
-  width: 100px;
+  /* width: 100px; */
   border: 1px solid rgb(120, 120, 120);
   text-align: center;
+}
+
+.seven-days-of-week th {
+  width: 100px;
+}
+
+.seven-days-of-week td {
+  width: 100px;
 }
 
 .seven-days-of-week td .done {
@@ -150,8 +160,10 @@ td {
 
 .seven-days-of-week {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   height: 90px;
+  width: 700px;
   align-self: flex-end;
 }
 
