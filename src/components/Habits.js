@@ -5,6 +5,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 // importing the deleteHabit and updateStatus reducers [function] from habitSlice
 import { deleteHabit, updateStatus } from "../features/habitSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 	// We are getting habitName, habitDiscription, habitStatus, habitId as props from parent component i.e HabitContainer
@@ -25,7 +27,16 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 		let clickedDate = Number(e.target.getAttribute("data-date").split("/")[0]);
 		let todayDate = new Date();
 		if (clickedDate > todayDate.getDate()) {
-			alert("You can only change for current date. Not for future dates");
+			// alert("You can only change for current date. Not for future dates");
+			toast.error("You can only change for current and past dates. Not for future dates", {
+				position: "top-right",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: true,
+				theme: "dark",
+			});
 			return;
 		}
 		const data = {
@@ -148,6 +159,18 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 			<div onClick={() => dispatch(deleteHabit(habitId))} className="delete-btn">
 				<i className="fa-solid fa-trash"></i>
 			</div>
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover={false}
+				theme="dark"
+			/>
 		</div>
 	);
 }

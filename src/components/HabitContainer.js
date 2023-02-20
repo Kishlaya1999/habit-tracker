@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Habits from "./Habits";
 import { addHabit } from "../features/habitSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function HabitContainer() {
 	// creating state for accepting the habit name and discription of the habit form input box
@@ -15,8 +17,17 @@ function HabitContainer() {
 
 	// This funciton will run on clicking Add Habit button
 	const addYourHabitOnClick = () => {
-		if (habit == "" || description == "") {
-			alert("Please fill both input fields and then add the habit");
+		if (habit === "" || description === "") {
+			// alert("Please fill both input fields and then add the habit");
+			toast.error("Please fill both input fields and then add the habit", {
+				position: "top-right",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: true,
+				theme: "dark",
+			});
 			return;
 		}
 
@@ -170,6 +181,18 @@ function HabitContainer() {
 					);
 				})}
 			</div>
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover={false}
+				theme="dark"
+			/>
 		</div>
 	);
 }
