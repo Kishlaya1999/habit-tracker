@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 // importing the useDispatch hook so that the reducer can be dispatched with data to change the state
 import { useDispatch } from "react-redux";
@@ -15,6 +17,17 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 	const updateCompleteStatus = (e) => {
 		// console.log(e.target.getAttribute("data-date"));
 		// constructing the data object for updating the status of the date selected
+
+		// console.log(Number(e.target.getAttribute("data-date").split("/")[0]));
+		// let todayDate = new Date();
+		// console.log(todayDate.getDate());
+
+		let clickedDate = Number(e.target.getAttribute("data-date").split("/")[0]);
+		let todayDate = new Date();
+		if (clickedDate > todayDate.getDate()) {
+			alert("You can only change for current date. Not for future dates");
+			return;
+		}
 		const data = {
 			date: e.target.getAttribute("data-date"),
 			id: habitId,
@@ -35,39 +48,96 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 					<thead>
 						<tr>
 							{/* displaying the dates of the Last 7 day */}
-							<th>{habitStatus[0].date}</th>
+							<th style={{ background: "purple" }}>{habitStatus[0].date}</th>
 							<th>{habitStatus[1].date}</th>
 							<th>{habitStatus[2].date}</th>
 							<th>{habitStatus[3].date}</th>
 							<th>{habitStatus[4].date}</th>
 							<th>{habitStatus[5].date}</th>
-							<th style={{ background: "purple" }}>{habitStatus[6].date}</th>
+							<th>{habitStatus[6].date}</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							{/* Displaying the habit status of the last 7 day */}
-							<td onClick={updateCompleteStatus} data-date={habitStatus[0].date}>
+							<td
+								onClick={updateCompleteStatus}
+								data-date={habitStatus[0].date}
+								style={{ background: "purple" }}>
 								{/* displaying the none, done or fail icon accoring to the state */}
-								{habitStatus[0].status === "none" ? <i className="fa-solid fa-check"></i> : habitStatus[0].status === "done" ? <i className="fa-solid fa-circle-check done"></i> : <i className="fa-solid fa-circle-xmark fail"></i>}
+								{habitStatus[0].status === "none" ? (
+									<i className="fa-solid fa-check"></i>
+								) : habitStatus[0].status === "done" ? (
+									<i className="fa-solid fa-circle-check done"></i>
+								) : (
+									<i className="fa-solid fa-circle-xmark fail"></i>
+								)}
 							</td>
-							<td onClick={updateCompleteStatus} data-date={habitStatus[1].date}>
-								{habitStatus[1].status === "none" ? <i className="fa-solid fa-check"></i> : habitStatus[1].status === "done" ? <i className="fa-solid fa-circle-check done"></i> : <i className="fa-solid fa-circle-xmark fail"></i>}
+							<td
+								onClick={updateCompleteStatus}
+								data-date={habitStatus[1].date}>
+								{habitStatus[1].status === "none" ? (
+									<i className="fa-solid fa-check"></i>
+								) : habitStatus[1].status === "done" ? (
+									<i className="fa-solid fa-circle-check done"></i>
+								) : (
+									<i className="fa-solid fa-circle-xmark fail"></i>
+								)}
 							</td>
-							<td onClick={updateCompleteStatus} data-date={habitStatus[2].date}>
-								{habitStatus[2].status === "none" ? <i className="fa-solid fa-check"></i> : habitStatus[2].status === "done" ? <i className="fa-solid fa-circle-check done"></i> : <i className="fa-solid fa-circle-xmark fail"></i>}
+							<td
+								onClick={updateCompleteStatus}
+								data-date={habitStatus[2].date}>
+								{habitStatus[2].status === "none" ? (
+									<i className="fa-solid fa-check"></i>
+								) : habitStatus[2].status === "done" ? (
+									<i className="fa-solid fa-circle-check done"></i>
+								) : (
+									<i className="fa-solid fa-circle-xmark fail"></i>
+								)}
 							</td>
-							<td onClick={updateCompleteStatus} data-date={habitStatus[3].date}>
-								{habitStatus[3].status === "none" ? <i className="fa-solid fa-check"></i> : habitStatus[3].status === "done" ? <i className="fa-solid fa-circle-check done"></i> : <i className="fa-solid fa-circle-xmark fail"></i>}
+							<td
+								onClick={updateCompleteStatus}
+								data-date={habitStatus[3].date}>
+								{habitStatus[3].status === "none" ? (
+									<i className="fa-solid fa-check"></i>
+								) : habitStatus[3].status === "done" ? (
+									<i className="fa-solid fa-circle-check done"></i>
+								) : (
+									<i className="fa-solid fa-circle-xmark fail"></i>
+								)}
 							</td>
-							<td onClick={updateCompleteStatus} data-date={habitStatus[4].date}>
-								{habitStatus[4].status === "none" ? <i className="fa-solid fa-check"></i> : habitStatus[4].status === "done" ? <i className="fa-solid fa-circle-check done"></i> : <i className="fa-solid fa-circle-xmark fail"></i>}
+							<td
+								onClick={updateCompleteStatus}
+								data-date={habitStatus[4].date}>
+								{habitStatus[4].status === "none" ? (
+									<i className="fa-solid fa-check"></i>
+								) : habitStatus[4].status === "done" ? (
+									<i className="fa-solid fa-circle-check done"></i>
+								) : (
+									<i className="fa-solid fa-circle-xmark fail"></i>
+								)}
 							</td>
-							<td onClick={updateCompleteStatus} data-date={habitStatus[5].date}>
-								{habitStatus[5].status === "none" ? <i className="fa-solid fa-check"></i> : habitStatus[5].status === "done" ? <i className="fa-solid fa-circle-check done"></i> : <i className="fa-solid fa-circle-xmark fail"></i>}
+							<td
+								onClick={updateCompleteStatus}
+								data-date={habitStatus[5].date}>
+								{habitStatus[5].status === "none" ? (
+									<i className="fa-solid fa-check"></i>
+								) : habitStatus[5].status === "done" ? (
+									<i className="fa-solid fa-circle-check done"></i>
+								) : (
+									<i className="fa-solid fa-circle-xmark fail"></i>
+								)}
 							</td>
-							<td onClick={updateCompleteStatus} data-date={habitStatus[6].date} style={{ background: "purple" }}>
-								{habitStatus[6].status === "none" ? <i className="fa-solid fa-check"></i> : habitStatus[6].status === "done" ? <i className="fa-solid fa-circle-check done"></i> : <i className="fa-solid fa-circle-xmark fail"></i>}
+							<td
+								onClick={updateCompleteStatus}
+								data-date={habitStatus[6].date}>
+								{habitStatus[6].status === "none" ? (
+									<i className="fa-solid fa-check"></i>
+								) : habitStatus[6].status === "done" ? (
+									<i className="fa-solid fa-circle-check done"></i>
+								) : (
+									<i className="fa-solid fa-circle-xmark fail"></i>
+								)}
 							</td>
 						</tr>
 					</tbody>

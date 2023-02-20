@@ -1,3 +1,5 @@
+/** @format */
+
 // importing the createSlice function from redux toolkit
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -48,7 +50,9 @@ export const habitSlice = createSlice({
 			 */
 			const idOfHabitToBeDeleted = Number(action.payload);
 			const habitsArrayFromLocalStorage = JSON.parse(localStorage.getItem("habits"));
-			let newArray = habitsArrayFromLocalStorage.filter((habit) => habit.id !== idOfHabitToBeDeleted);
+			let newArray = habitsArrayFromLocalStorage.filter(
+				(habit) => habit.id !== idOfHabitToBeDeleted
+			);
 			localStorage.setItem("habits", JSON.stringify(newArray));
 			state.habits = newArray;
 		},
@@ -61,8 +65,11 @@ export const habitSlice = createSlice({
 			 * filtering the habit array to get the habit object that is to be updated
 			 */
 			const data = action.payload;
+
 			const habitsArrayFromLocalStorage = JSON.parse(localStorage.getItem("habits"));
-			let habitToBeUpdated = habitsArrayFromLocalStorage.filter((habit) => habit.id === data.id);
+			let habitToBeUpdated = habitsArrayFromLocalStorage.filter(
+				(habit) => habit.id === data.id
+			);
 			let habitObjectToBeUpdated = habitToBeUpdated[0];
 			// console.log(habitToBeUpdated[0].dates[0]);
 			// console.log(typeof data.date);
@@ -91,19 +98,24 @@ export const habitSlice = createSlice({
 			/*
 			 * Searching the habit by its id and then replacing that habit's object date's object
 			 */
-			let newHabitsArrayToBeStoredInLocalStorage = habitsArrayFromLocalStorage.map((habit) => {
-				if (data.id === habit.id) {
-					habit.dates = newDateArray;
+			let newHabitsArrayToBeStoredInLocalStorage = habitsArrayFromLocalStorage.map(
+				(habit) => {
+					if (data.id === habit.id) {
+						habit.dates = newDateArray;
+					}
+					return habit;
 				}
-				return habit;
-			});
+			);
 			// console.log(newHabitsArrayToBeStoredInLocalStorage);
 
 			/*
 			 * updating the local storage with the new updated date object
 			 * and also updating the habit state so that changes are also visible in UI
 			 */
-			localStorage.setItem("habits", JSON.stringify(newHabitsArrayToBeStoredInLocalStorage));
+			localStorage.setItem(
+				"habits",
+				JSON.stringify(newHabitsArrayToBeStoredInLocalStorage)
+			);
 			state.habits = newHabitsArrayToBeStoredInLocalStorage;
 		},
 	},
