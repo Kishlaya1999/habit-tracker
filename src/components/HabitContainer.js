@@ -17,9 +17,10 @@ function HabitContainer() {
 
 	// This funciton will run on clicking Add Habit button
 	const addYourHabitOnClick = () => {
-		if (habit === "" || description === "") {
+		// if any of the input field is empty then
+		if (habit === "") {
 			// alert("Please fill both input fields and then add the habit");
-			toast.error("Please fill both input fields and then add the habit", {
+			toast.error("Please fill name of the habit to add it in the list", {
 				position: "top-right",
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -46,81 +47,27 @@ function HabitContainer() {
 			return date;
 		}
 
-		function Next7Days() {
-			var today = new Date();
-			var oneDayAfter = new Date(today);
-			var twoDaysAfter = new Date(today);
-			var threeDaysAfter = new Date(today);
-			var fourDaysAfter = new Date(today);
-			var fiveDaysAfter = new Date(today);
-			var sixDaysAfter = new Date(today);
-
-			oneDayAfter.setDate(today.getDate() + 1);
-			twoDaysAfter.setDate(today.getDate() + 2);
-			threeDaysAfter.setDate(today.getDate() + 3);
-			fourDaysAfter.setDate(today.getDate() + 4);
-			fiveDaysAfter.setDate(today.getDate() + 5);
-			sixDaysAfter.setDate(today.getDate() + 6);
-
-			var result0 = formatDate(today);
-			var result1 = formatDate(oneDayAfter);
-			var result2 = formatDate(twoDaysAfter);
-			var result3 = formatDate(threeDaysAfter);
-			var result4 = formatDate(fourDaysAfter);
-			var result5 = formatDate(fiveDaysAfter);
-			var result6 = formatDate(sixDaysAfter);
-
-			var result = [result0, result1, result2, result3, result4, result5, result6];
-			return result;
+		// Get today's date
+		const today = new Date();
+		let next21daysArray = [];
+		let dates = [];
+		// Loop through the next 21 days and print the date
+		for (let i = 0; i < 21; i++) {
+			const nextDate = new Date();
+			nextDate.setDate(today.getDate() + i);
+			// console.log(nextDate.toDateString());
+			let formatedDate = formatDate(nextDate);
+			next21daysArray.push(formatedDate);
+			let currentDate = { date: next21daysArray[i], status: "none" };
+			dates.push(currentDate);
 		}
-
-		// This function is responsible for returning the array of last 7 day dates
-		// function Last7Days() {
-		// 	// Creating 7 variables for 7 days; At this point all the variables is assigned as today's date
-		// 	var today = new Date();
-		// 	var oneDayAgo = new Date(today);
-		// 	var twoDaysAgo = new Date(today);
-		// 	var threeDaysAgo = new Date(today);
-		// 	var fourDaysAgo = new Date(today);
-		// 	var fiveDaysAgo = new Date(today);
-		// 	var sixDaysAgo = new Date(today);
-
-		// 	// setDate is responsible for setting up the appropriate value for last 6 days
-		// oneDayAgo.setDate(today.getDate() - 1);
-		// twoDaysAgo.setDate(today.getDate() - 2);
-		// threeDaysAgo.setDate(today.getDate() - 3);
-		// fourDaysAgo.setDate(today.getDate() - 4);
-		// fiveDaysAgo.setDate(today.getDate() - 5);
-		// sixDaysAgo.setDate(today.getDate() - 6);
-
-		// 	// formatting the date accordingly as we want in our project
-		// 	var result0 = formatDate(today);
-		// 	var result1 = formatDate(oneDayAgo);
-		// 	var result2 = formatDate(twoDaysAgo);
-		// 	var result3 = formatDate(threeDaysAgo);
-		// 	var result4 = formatDate(fourDaysAgo);
-		// 	var result5 = formatDate(fiveDaysAgo);
-		// 	var result6 = formatDate(sixDaysAgo);
-
-		// 	// Creating the array of last 7 days and returing it
-		// 	var result = [result0, result1, result2, result3, result4, result5, result6];
-		// 	return result;
-		// }
 
 		// Creating the habit object with all the info which is required for creating different functionalities
 		let habitToBeAdded = {
 			id: Date.now(),
 			title: habit,
 			description: description,
-			dates: [
-				{ date: Next7Days()[0], status: "none" },
-				{ date: Next7Days()[1], status: "none" },
-				{ date: Next7Days()[2], status: "none" },
-				{ date: Next7Days()[3], status: "none" },
-				{ date: Next7Days()[4], status: "none" },
-				{ date: Next7Days()[5], status: "none" },
-				{ date: Next7Days()[6], status: "none" },
-			],
+			dates: dates,
 		};
 		// Setting up the habit and discription state to empty string so that input box can get empty
 		setHabit("");
@@ -150,7 +97,7 @@ function HabitContainer() {
 							onChange={(e) => setHabit(e.target.value)}
 							value={habit}
 							type="text"
-							placeholder="Enter the name of habit"
+							placeholder="Enter the name of habit (required)"
 						/>
 					</div>
 					<div className="input-bar">
@@ -161,25 +108,28 @@ function HabitContainer() {
 							onChange={(e) => setDescription(e.target.value)}
 							value={description}
 							type="text"
-							placeholder="Write the discription of the habit...."
+							placeholder="Write the discription of the habit.... (optional)"
 						/>
 					</div>
 					<button onClick={addYourHabitOnClick}>Add Habit</button>
 				</section>
-				{/* using map funciton to display all the habits added till now */}
-				{data.map((habit, index) => {
-					// here habit is the object which contains the id, title, discription, dates
-					// passing all the information of current habit as props to Habits component
-					return (
-						<Habits
-							habitName={habit.title}
-							habitDiscription={habit.description}
-							habitStatus={habit.dates}
-							habitId={habit.id}
-							key={index}
-						/>
-					);
-				})}
+				<div className="list-of-habits-container">
+
+					{/* using map funciton to display all the habits added till now */}
+					{data.map((habit, index) => {
+						// here habit is the object which contains the id, title, discription, dates
+						// passing all the information of current habit as props to Habits component
+						return (
+							<Habits
+								habitName={habit.title}
+								habitDiscription={habit.description}
+								habitStatus={habit.dates}
+								habitId={habit.id}
+								key={index}
+							/>
+						);
+					})}
+				</div>
 			</div>
 			<ToastContainer
 				position="top-right"
