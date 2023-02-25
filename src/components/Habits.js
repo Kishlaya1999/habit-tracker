@@ -104,6 +104,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 											</th>
 										);
 									}
+									return null;
 								})}
 							</tr>
 						</thead>
@@ -131,6 +132,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 											</td>
 										);
 									}
+									return null;
 								})}
 							</tr>
 						</tbody>
@@ -147,6 +149,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 											</th>
 										);
 									}
+									return null;
 								})}
 							</tr>
 						</thead>
@@ -174,6 +177,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 											</td>
 										);
 									}
+									return null;
 								})}
 							</tr>
 						</tbody>
@@ -190,6 +194,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 											</th>
 										);
 									}
+									return null;
 								})}
 							</tr>
 						</thead>
@@ -217,6 +222,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 											</td>
 										);
 									}
+									return null;
 								})}
 							</tr>
 						</tbody>
