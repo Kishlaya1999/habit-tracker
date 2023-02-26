@@ -11,6 +11,7 @@ function HabitContainer() {
 	// creating state for accepting the habit name and discription of the habit form input box
 	const [habit, setHabit] = useState("");
 	const [description, setDescription] = useState("");
+	const [isVisibleId, setIsVisibleId] = useState("");
 
 	// using useDispatch hook for dispatching the action from UI to the redux store which will change the UI on global state change
 	const dispatch = useDispatch();
@@ -114,7 +115,6 @@ function HabitContainer() {
 					<button onClick={addYourHabitOnClick}>Add Habit</button>
 				</section>
 				<div className="list-of-habits-container">
-
 					{/* using map funciton to display all the habits added till now */}
 					{data.map((habit, index) => {
 						// here habit is the object which contains the id, title, discription, dates
@@ -126,6 +126,8 @@ function HabitContainer() {
 								habitStatus={habit.dates}
 								habitId={habit.id}
 								key={index}
+								isVisibleId={isVisibleId === habit.id}
+								setIsVisibleId={setIsVisibleId}
 							/>
 						);
 					})}

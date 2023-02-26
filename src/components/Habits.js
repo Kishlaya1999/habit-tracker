@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // importing the useDispatch hook so that the reducer can be dispatched with data to change the state
 import { useDispatch } from "react-redux";
 // importing the deleteHabit and updateStatus reducers [function] from habitSlice
@@ -8,10 +8,9 @@ import { deleteHabit, updateStatus } from "../features/habitSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
+function Habits({ habitName, habitDiscription, habitStatus, habitId, isVisibleId, setIsVisibleId }) {
 	// We are getting habitName, habitDiscription, habitStatus, habitId as props from parent component i.e HabitContainer
 
-	const [isVisible, setIsVisible] = useState(false);
 	// using useDispatch hoot for dispatching data form the UI to redux store so that state can be updated accordingly
 	// data which is begin send is known as payload and redux store can access the data
 	const dispatch = useDispatch();
@@ -34,7 +33,7 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 
 		}
 
-	}, [isVisible]);
+	}, [isVisibleId]);
 
 	// This function is executed when any of the dates status has to be changed i.e none,done,fail
 	const updateCompleteStatus = (e) => {
@@ -85,12 +84,21 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId }) {
 					<div className="habit-name">{habitName}</div>
 					<div className="habit-description">{habitDiscription}</div>
 				</div>
-				<div className="accordion-icon" onClick={() => setIsVisible(!isVisible)}>
-					<i class={`fa-solid ${isVisible ? "fa-chevron-up" : "fa-chevron-down"}`}></i>
-				</div>
+
+				{isVisibleId ?
+					(<div className="accordion-icon-up" onClick={() => setIsVisibleId("")}>
+						<i className="fa-solid fa-chevron-up"></i>
+					</div>)
+					: (<div className="accordion-icon-down" onClick={() => setIsVisibleId(habitId)}>
+						<i className="fa-solid fa-chevron-down"></i>
+					</div>)
+				}
+
+
+
 			</div>
 
-			{isVisible && (
+			{isVisibleId && (
 				<div className="seven-days-of-week">
 					<table>
 						<thead>
