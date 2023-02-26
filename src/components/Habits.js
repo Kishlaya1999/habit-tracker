@@ -26,10 +26,10 @@ function Habits({ habitName, habitDiscription, habitStatus, habitId, isVisibleId
 		if (dates.length > 0) {
 
 			const indexOfTodaysDateInDatesArray = dateArray.indexOf(todayDate);
-			dates[indexOfTodaysDateInDatesArray].style.backgroundColor = "purple";
+			dates[indexOfTodaysDateInDatesArray].style.backgroundColor = "#808080";
 
 			const dateStatus = document.getElementsByClassName("date-status");
-			dateStatus[indexOfTodaysDateInDatesArray].style.backgroundColor = "purple";
+			dateStatus[indexOfTodaysDateInDatesArray].style.backgroundColor = "#808080";
 
 		}
 

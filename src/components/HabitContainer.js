@@ -114,24 +114,28 @@ function HabitContainer() {
 					</div>
 					<button onClick={addYourHabitOnClick}>Add Habit</button>
 				</section>
-				<div className="list-of-habits-container">
-					{/* using map funciton to display all the habits added till now */}
-					{data.map((habit, index) => {
-						// here habit is the object which contains the id, title, discription, dates
-						// passing all the information of current habit as props to Habits component
-						return (
-							<Habits
-								habitName={habit.title}
-								habitDiscription={habit.description}
-								habitStatus={habit.dates}
-								habitId={habit.id}
-								key={index}
-								isVisibleId={isVisibleId === habit.id}
-								setIsVisibleId={setIsVisibleId}
-							/>
-						);
-					})}
+				<div className="contains-all-habit">
+					<div className="list-of-habits-container">
+						{/* using map funciton to display all the habits added till now */}
+						{data.length === 0 && <h1 className="no-habit-text">No Habit Added Yet</h1>}
+						{data.map((habit, index) => {
+							// here habit is the object which contains the id, title, discription, dates
+							// passing all the information of current habit as props to Habits component
+							return (
+								<Habits
+									habitName={habit.title}
+									habitDiscription={habit.description}
+									habitStatus={habit.dates}
+									habitId={habit.id}
+									key={index}
+									isVisibleId={isVisibleId === habit.id}
+									setIsVisibleId={setIsVisibleId}
+								/>
+							);
+						})}
+					</div>
 				</div>
+
 			</div>
 			<ToastContainer
 				position="top-right"

@@ -5,7 +5,7 @@
 }
 
 :root {
-  --primary: #000000;
+  --primary: rgba(255, 255, 255, 0.329);
   --secondary: hsl(278, 88%, 20%);
   --habit-shadow: hsl(278, 88%, 80%);
   --add-btn: #700B97;
@@ -16,19 +16,12 @@
   --add-btn: #C060A1; */
 }
 
-.App{
-  height:100vh;
-  display:flex;
-}
-
-.navbar {
-  height: 10vh;
-  background-color: hsl(0, 0%, 50%);
+.App {
+  height: 100vh;
   display: flex;
-  align-items: center;
-  padding-left: 20px;
-  font-size: 24px;
-  font-weight: 600;
+  background-image: url("./images/background-img\ \(2\).jpg");
+  background-size: cover;
+  background-position: center center;
 }
 
 .main-container {
@@ -38,7 +31,8 @@
   position: relative;
   inset: 0;
   margin: auto;
-/*   margin-top: 30px; */
+  backdrop-filter: blur(2px);
+  /*   margin-top: 30px; */
   border-radius: 10px;
   padding: 15px;
 }
@@ -77,6 +71,7 @@
 
 
 .habit-adding input {
+  background-color: hsl(0deg 0% 100% / 84%);
   width: 500px;
   height: 35px;
   outline: none;
@@ -84,6 +79,12 @@
   margin: 5px 0;
   padding: 0 0 0 10px;
   font-size: 1rem;
+  border: 1px solid;
+  box-shadow: 1px 1px;
+}
+
+.habit-adding input:focus {
+  box-shadow: 0px 0px;
 }
 
 .habit-adding button {
@@ -99,19 +100,40 @@
   font-size: 1rem;
 }
 
-.list-of-habits-container {
+.no-habit-text {
+  text-align: center;
+  font-weight: 500;
+}
+
+.contains-all-habit {
+  position: relative;
   width: 76%;
+  height: 100%;
+}
+
+.list-of-habits-container {
+  /* position: relative; */
+  height: 65vh;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+
+.list-of-habits-container::-webkit-scrollbar {
+  display: none;
 }
 
 .list-of-habits {
-  background-color: var(--secondary);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.747);
+  color: black;
+  border: 1px solid black;
   border-radius: 10px;
-  width: 100%;
+  width: 98%;
   /* height: 265px; */
   margin: 10px;
   padding: 10px 20px;
-  box-shadow: 0 0 7px var(--habit-shadow);
+  /* box-shadow: 0 0 7px var(--habit-shadow); */
   display: flex;
   align-items: center;
   position: relative;
@@ -126,7 +148,8 @@
   margin-top: 20px;
 }
 
-.accordion-icon {
+.accordion-icon-up,
+.accordion-icon-down {
   cursor: pointer;
 }
 
@@ -194,9 +217,19 @@ td {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  position: relative;
   /* height: 90px; */
-  width: 700px;
+  /*   width: 700px; */
   align-self: flex-end;
+  transition: all 0.5s ease-in-out;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
 }
 
 .delete-btn {
