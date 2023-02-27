@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Habits from "./Habits";
 import { addHabit } from "../features/habitSlice";
@@ -12,6 +12,7 @@ function HabitContainer() {
 	const [habit, setHabit] = useState("");
 	const [description, setDescription] = useState("");
 	const [isVisibleId, setIsVisibleId] = useState("");
+	const addHabitBtn = useRef();
 
 	// using useDispatch hook for dispatching the action from UI to the redux store which will change the UI on global state change
 	const dispatch = useDispatch();
@@ -78,6 +79,14 @@ function HabitContainer() {
 		dispatch(addHabit(habitToBeAdded));
 	};
 
+	// This function will run when we press enter to add a habit
+	const addYourHabitOnEnter = (e) => {
+		// 13 is the keyCode of enter button in keyboard
+		if (e.keyCode === 13) {
+			addHabitBtn.current.click();
+		}
+	}
+
 	// useSelector hook is used to get the data form the redux store
 	// getting all the habits from redux store and displaying it in UI
 	// data is the array of objects in which a single object represents a habit
@@ -99,6 +108,7 @@ function HabitContainer() {
 							value={habit}
 							type="text"
 							placeholder="Enter the name of habit (required)"
+							onKeyDown={addYourHabitOnEnter}
 						/>
 					</div>
 					<div className="input-bar">
@@ -110,14 +120,15 @@ function HabitContainer() {
 							value={description}
 							type="text"
 							placeholder="Write the discription of the habit.... (optional)"
+							onKeyDown={addYourHabitOnEnter}
 						/>
 					</div>
-					<button onClick={addYourHabitOnClick}>Add Habit</button>
+					<button onClick={addYourHabitOnClick} ref={addHabitBtn}>Add Habit</button>
 				</section>
 				<div className="contains-all-habit">
 					<div className="list-of-habits-container">
 						{/* using map funciton to display all the habits added till now */}
-						{data.length === 0 && <h1 className="no-habit-text">No Habit Added Yet</h1>}
+						{data.length === 0 && <h1 className="no-habit-text">No Habits Added Yet</h1>}
 						{data.map((habit, index) => {
 							// here habit is the object which contains the id, title, discription, dates
 							// passing all the information of current habit as props to Habits component
