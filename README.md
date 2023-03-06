@@ -1,11 +1,11 @@
 # Screenshot
 <p>It is a habit tracking react app where the user can track there habits for 21 days.</p>
-<ul>
+<ol>
   <li>It uses <b>Redux</b> for state management</li>
   <li>Data remains persistant because of <b>localStorage</b></li>
   <li><b>react-toastify</b> is begin used for alert messages</li>
-</ul>
-![Habit Tracker](https://user-images.githubusercontent.com/66960784/223075080-4f872879-fbe1-4a46-89a5-cd162ffcf292.png)
+</ol>
+![Habit Tracker](https://user-images.githubusercontent.com/66960784/223076036-40318d4b-26e8-407a-bbf7-7e5031c77c44.png)
 
 #### Displaying alert Messages
 
